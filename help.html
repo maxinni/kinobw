@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КіноB&W - Часті питання</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: #000000;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        a:hover, a:focus, a:active {
+            text-decoration: none;
+            outline: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #eee;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ccc;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background-size: 400% 100%;
+            background-position: 0% 0%;
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            animation: gradient-animation 2s linear infinite alternate;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 0%; }
+        }
+
+        .glow-on-hover {
+            width: 100%;
+            max-width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .glow-on-hover:active {
+            color: #ffffff;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        .main {
+            padding: 20px 0;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .FAQ-inf {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            text-align: left;
+            color: #aaa;
+            line-height: 1.6;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .FAQ-inf h2, .FAQ-inf h3 {
+            color: #ddd;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .FAQ-inf p {
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .FAQ-inf ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+            list-style-type: disc;
+            font-size: 0.95em;
+        }
+
+        .back-button-container {
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        footer {
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-column h3 {
+            margin-top: 0;
+            color: #ddd;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .footer-column p {
+            color: #aaa;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #ddd;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .FAQ-inf {
+                padding: 15px;
+            }
+
+            .FAQ-inf h2, .FAQ-inf h3 {
+                font-size: 1.1em;
+            }
+
+            .FAQ-inf p, .FAQ-inf ul {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .FAQ-inf h2, .FAQ-inf h3 {
+                font-size: 1em;
+            }
+
+            .FAQ-inf p, .FAQ-inf ul {
+                font-size: 0.85em;
+            }
+
+            .footer-column h3 {
+                font-size: 1em;
+            }
+
+            .footer-column p, .footer-column a {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">КіноB&W</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="info.html">Про нас</a></li>
+                    <li><a href="afiche.html">Афіша</a></li>
+                    <li><a href="ticketss.html">Квитки</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="main">
+            <div class="FAQ-inf">
+                <div class="FAQ">
+                    <h2>Як купити квиток онлайн?</h2>
+                    <p><em>↪︎ Ви можете купити квиток на нашому сайті: виберіть фільм, дату і час сеансу, потім місця і оплатіть покупку зручним способом. Електронний квиток прийде на вашу пошту і буде доступний в особистому кабінеті.</em></p>
+                    <h2>Чи можна повернути або обміняти квиток?</h2>
+                    <p><em>↪︎ Так, повернення або обмін квитка можливий не пізніше, ніж за [вказати час, наприклад, 2 години] до початку сеансу. Для цього зверніться до каси або до служби підтримки.</em></p>
+                    <h2>Чи потрібно роздруковувати електронний квиток?</h2>
+                    <p><em>↪︎ Ні, достатньо показати QR-код з екрана телефону під час входу до зали.</em></p>
+                    <h2>Чи є знижки для студентів/пенсіонерів/дітей?</h2>
+                    <p><em>↪︎ Так, у нас діють спеціальні ціни для деяких категорій глядачів.</em></p>
+                    <h2>Чи можна купити квиток у касі кінотеатру?</h2>
+                    <p><em>↪︎ Так, каси працюють щодня. Час роботи вказано на сторінці контактів.</em></p>
+                    <h2>Що робити, якщо я не отримав квиток на пошту?</h2>
+                    <p><em>↪︎ Перевірте папку «Спам». Якщо листа немає, увійдіть в особистий кабінет або зверніться до служби підтримки.</em></p>
+                    <h2>Чи є парковка поруч із кінотеатром?</h2>
+                    <p><em>↪︎ Так, поруч із кінотеатром знаходиться безкоштовна/платна парковка.</em></p>
+                    <h2>Чи можна приносити свою їжу та напої?</h2>
+                    <p><em>↪︎ Ні, до зали заборонено проносити їжу та напої, куплені поза кінотеатром. У нас працює кінобар.</em></p>
+                    <h2>Чи доступний вхід для людей з обмеженими можливостями?</h2>
+                    <p><em>↪︎ Так, наш кінотеатр обладнанний пандусами та місцями для інвалідних візків.</em></p>
+                </div>
+            </div>
+
+            <div class="back-button-container">
+                <a href="index.html"><button class="glow-on-hover">Повернутися до головної</button></a>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Хіти:</h3>
+                    <p><a href="MissionImpossible.html">Місія неможлива: Фінальна розплата</a></p>
+                    <p><a href="minecraft.html">Minecraft: Фільм</a></p>
+                    <p><a href="gromoverzci.html">Громовержці*</a></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Скоро у кіно:</h3>
+                    <p><a href="lilo-stitch.html">Ліло і Стіч</a></p>
+                    <p><a href="klammer-fest.html">Виходячи за межі</a></p>
+                    <p><a href="the-penguin-lessons.html">Уроки містера Пінгвіна</a></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Корисна інформація:</h3>
+                    <p><a href="help.html">Як купити квиток?</a></p>
+                    <p><a href="privacy.html">Конфідеційність</a></p>
+                    <p><a href="contact.html">Наші контакти</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
