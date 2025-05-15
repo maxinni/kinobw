@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Політика конфіденційності - КіноB&W</title>
+    <style>
+        body {
+            font-family: Helvetica;
+            background-color: #000000;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Шапка как в предыдущих примерах */
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            header {
+                flex-direction: row;
+            }
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #eee;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                margin-bottom: 0;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 5px 10px;
+        }
+
+        @media (min-width: 768px) {
+            nav li {
+                margin-left: 20px;
+            }
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ccc;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background-size: 400% 100%;
+            background-position: 0% 0%;
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            animation: gradient-animation 2s linear infinite alternate;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 0%; }
+        }
+
+        .main {
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+
+        .privacy-content {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            text-align: left;
+            color: #aaa;
+            line-height: 1.6;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .privacy-content h2, .privacy-content h3 {
+            color: #ddd;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .privacy-content p {
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .privacy-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+            list-style-type: disc;
+            font-size: 0.9em;
+        }
+
+        .glow-on-hover {
+            width: 100%;
+            max-width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .glow-on-hover:active {
+            color: #ffffff;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        footer {
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            box-sizing: border-box;
+        }
+
+        .footer-column h3 {
+            margin-top: 0;
+            color: #ddd;
+            font-size: 1.2em;
+        }
+
+        .footer-column p {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .back-button a {
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Общие стили для всех ссылок */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        a:hover, a:focus, a:active {
+            text-decoration: none;
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .footer-columns {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .privacy-content {
+                padding: 15px;
+            }
+
+            .privacy-content h2, .privacy-content h3 {
+                font-size: 1.1em;
+            }
+
+            .privacy-content p, .privacy-content ul {
+                font-size: 0.85em;
+            }
+            .footer-column h3{
+                font-size: 1em;
+            }
+            .footer-column p,
+            .footer-column a{
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">КіноB&W</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="info.html">Про нас</a></li>
+                    <li><a href="afiche.html">Афіша</a></li>
+                    <li><a href="ticketss.html">Квитки</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="main">
+            <div class="privacy-content">
+                <h2>Політика конфіденційності</h2>
+
+                <p>Ця політика конфіденційності описує, як КіноB&W збирає, використовує та захищає вашу особисту інформацію, коли ви користуєтеся нашим вебсайтом та послугами.</p>
+
+                <h3>Збір інформації</h3>
+                <p>Ми можемо збирати таку інформацію:</p>
+                <ul>
+                    <li>Інформацію, яку ви надаєте під час реєстрації або оформлення замовлення (наприклад, ім'я, електронна адреса, номер телефону).</li>
+                    <li>Інформацію про ваші транзакції на нашому сайті.</li>
+                    <li>Інформацію про ваше використання нашого вебсайту (наприклад, IP-адреса, тип браузера, відвідані сторінки).</li>
+                    <li>Інформацію, яку ви надаєте при зверненні до служби підтримки.</li>
+                </ul>
+
+                <h3>Використання інформації</h3>
+                <p>Ми використовуємо зібрану інформацію для таких цілей:</p>
+                <ul>
+                    <li>Обробка ваших замовлень та надання послуг.</li>
+                    <li>Персоналізація вашого досвіду користування сайтом.</li>
+                    <li>Надсилання вам інформації про оновлення, акції та новини (за вашою згодою).</li>
+                    <li>Покращення нашого вебсайту та послуг.</li>
+                    <li>Відповіді на ваші запити та надання підтримки.</li>
+                </ul>
+
+                <h3>Захист інформації</h3>
+                <p>Ми вживаємо розумних заходів безпеки для захисту вашої особистої інформації від несанкціонованого доступу, використання або розголошення.</p>
+
+                <h3>Розголошення інформації третім сторонам</h3>
+                <p>Ми не передаємо вашу особисту інформацію третім сторонам, за винятком випадків, передбачених законодавством або необхідних для надання вам послуг (наприклад, платіжним системам).</p>
+
+                <h3>Ваші права</h3>
+                <p>Ви маєте право:</p>
+                <ul>
+                    <li>Отримати доступ до своєї особистої інформації.</li>
+                    <li>Вимагати виправлення неточної або неповної інформації.</li>
+                    <li>Вимагати видалення своєї особистої інформації (за певних умов).</li>
+                    <li>Відкликати свою згоду на обробку персональних даних (якщо така згода була надана).</li>
+                </ul>
+
+                <h3>Зміни до цієї політики</h3>
+                <p>Ми можемо періодично оновлювати цю політику конфіденційності. Про зміни буде повідомлено на нашому вебсайті.</p>
+
+            </div>
+
+            <div class="back-button">
+                <a href="index.html"><button class="glow-on-hover">Повернутися до головної</button></a>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Хіти:</h3>
+                    <p><a href="MissionImpossible.html">Місія неможлива: Фінальна розплата</a></p>
+                    <p><a href="minecraft.html">Minecraft: Фільм</a></p>
+                    <p><a href="gromoverzci.html">Громовержці*</a></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Скоро у кіно:</h3>
+                    <p><a href="lilo-stitch.html">Ліло і Стіч</a></p>
+                    <p><a href="klammer-fest.html">Виходячи за межі</a></p>
+                    <p><a href="the-penguin-lessons.html">Уроки містера Пінгвіна</a></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Корисна інформація:</h3>
+                    <p><a href="help.html">Як купити квиток?</a></p>
+                    <p><a href="privacy.html">Конфідеційність</a></p>
+                    <p><a href="contact.html">Наші контакти</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

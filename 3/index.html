@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema</title>
+    <style>
+        body {
+            font-family: Helvetica;
+            background-color: #000000;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            header {
+                flex-direction: row;
+            }
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #eee;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                margin-bottom: 0;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 5px 10px;
+        }
+
+        @media (min-width: 768px) {
+            nav li {
+                margin-left: 20px;
+            }
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ccc;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); 
+            background-size: 400% 100%; 
+            background-position: 0% 0%;
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            animation: gradient-animation 2s linear infinite alternate; 
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 0%; }
+        }
+
+        .glow-on-hover {
+            width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            font-size: 1em; 
+            font-weight: bold; 
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .glow-on-hover {
+                width: 100%;
+                max-width: 220px;
+            }
+        }
+
+        .hero {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-direction: column;
+        }
+
+        @media (min-width: 992px) {
+            .hero {
+                flex-direction: row;
+            }
+        }
+
+        .hero-text, .hero-image {
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .hero-text, .hero-image {
+                flex: 1;
+            }
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .featured-section {
+            margin-bottom: 40px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .movie-poster-wrapper {
+            overflow: hidden;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out; 
+        }
+
+        .movie-poster {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease-in-out;
+        }
+
+        footer {
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .footer-columns {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        .footer-column h3 {
+            margin-top: 0;
+            color: #ddd;
+            font-size: 1.1em;
+        }
+
+        .footer-column p {
+            color: #aaa;
+            font-size: 0.8em;
+            margin: 5px 0;
+        }
+
+        @media (min-width: 480px) {
+            .footer-column p {
+                font-size: 0.9em;
+            }
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none; 
+            font-size: 0.8em;
+            transition: color 0.3s ease;
+        }
+
+        @media (min-width: 480px) {
+            .footer-column a {
+                font-size: 0.9em;
+            }
+        }
+
+        .footer-column a:hover {
+            color: #ddd; 
+            text-decoration: none; 
+        }
+
+        a {
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        a:hover {
+            text-decoration: none; 
+        }
+
+        @media (max-width: 480px) {
+            .footer-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .movie-poster-wrapper:hover {
+            transform: scale(1.05); 
+        }
+
+        .movie-poster-wrapper:hover .movie-poster {
+            filter: grayscale(0%);
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:active {
+            color: #ffffff;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="container">
+        <header>
+            <div class="logo">КіноB&W</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="info.html">Про нас</a></li>
+                    <li><a href="afiche.html">Афіша</a></li>
+                    <li><a href="ticketss.html">Квитки</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-text">
+                <h1>КіноB&W</h1>
+                <p>«Кіно – це окремий світ, де є місце всьому на світі: коханню, дружбі, криміналу, фантастиці, історії. Кіно є джерелом нових знань, вражень та емоцій. Це мистецтво і розвага, яке змусить глядача задуматися, переосмислити життєві цінності або просто посміятися над діями героїв»</p>
+                <p><em>Замовляй або бронюй квитки прямо зараз, поглинь та збагать своє життя новими кольорами! Ми чекаємо саме на тебе.</em></p>
+                <a href="ticketss.html"><button class="glow-on-hover">До замовлення</button></a>
+            </div>
+            <div class="hero-image">
+                <img src="filmmaking-fotor.jpg" alt="Hero Image">
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <h2>Фільми зараз у кіно</h2>
+            <div class="featured-grid">
+                <a href="Untildawn.html"><div class="movie-poster-wrapper"> <img class="movie-poster" src="Untildawn.jpg" alt="Movie Poster 1"></div></a>
+                <a href="MissionImpossible.html"><div class="movie-poster-wrapper"> <img class="movie-poster" src="MissionImpossible.jpg" alt="Movie Poster 2"></div></a>
+                <a href="auditor2.html"><div class="movie-poster-wrapper"> <img class="movie-poster" src="auditor2.jpg" alt="Movie Poster 3"></div></a>
+                <a href="Sinners.html"><div class="movie-poster-wrapper"> <img class="movie-poster" src="Sinners.jpg" alt="Movie Poster 4"></div></a>
+                <a href="clownFrendo.html"><div class="movie-poster-wrapper"> <img class="movie-poster" src="clownFrendo.jpg" alt="Movie Poster 5"></div></a>
+                <a href="FinalDestination.html"><div class="movie-poster-wrapper"> <img class="movie-poster" src="FinalDestination.jpg" alt="Movie Poster 6"></div></a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Хіти:</h3>
+                    <p><a href="MissionImpossible.html">Місія неможлива: Фінальна розплата</a></p>
+                    <p><a href="minecraft.html">Minecraft: Фільм</a></p>
+                    <p><a href="gromoverzci.html">Громовержці*</a></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Скоро у кіно:</h3>
+                    <p><a href="lilo-stitch.html">Ліло і Стіч</a></p>
+                    <p><a href="klammer-fest.html">Виходячи за межі</a></p>
+                    <p><a href="the-penguin-lessons.html">Уроки містера Пінгвіна</a></p>
+                </div>
+                <div class="footer-column">
+                    <h3>Корисна інформація:</h3>
+                    <p><a href="help.html">Як купити квиток?</a></p>
+                    <p><a href="privacy.html">Конфідеційність</a></p>
+                    <p><a href="contact.html">Наші контакти</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
